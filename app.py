@@ -159,4 +159,4 @@ def update_output(nameofstock):
 # -------------------------------
 
 if __name__ == "__main__":
-    app.run_server()#mode="inline", host="localhost")
+    app.run_server(mode="inline", host="localhost")
