@@ -4,4 +4,3 @@ plotly==5.22.0
 dash-tools
 pandas==2.1.4
 dash_bootstrap_components
-psycopg2
