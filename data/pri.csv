@@ -1,0 +1,2 @@
+,stockrun_date,earningsrun_date,noinfostock,noinfoearnings,std_idc,std_com,std_ten,std_cry,std_sym
+pr_val,2024-01-01,2024-01-01,"['test_none', 'test_none2']",['test_none'],"['^SPX', '^NDQ', 'AC.F', '^DAX']","['cl.f', 'xauusd', 'xagusd', 'xpdusd', 'xptusd', 'hg.f']","['eurusd', 'eurgbp', 'eurjpy', 'eurdkk', 'eurchf', 'eurpln']","['btc.v', 'ETH.V', 'XRP.V', 'ATOM.V', 'DOGE.V', 'BTCXAU']","['AMZN', 'GOOGL', 'PFE', 'TSLA', 'MSFT', 'AAPL']"
