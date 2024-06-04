@@ -105,7 +105,7 @@ app.layout = dbc.Container([
         dbc.Col(html.H3(f"Heute: {dtd_str}", className="text-end"))
             ]),
     dbc.Row([
-        dbc.Col(html.H1("📈 Stock market Data Dashboard", className="text-start")),
+        dbc.Col(html.H1("📈 Stock Earnings Data", className="text-start")),
         dbc.Col(html.H1(f"Daten vom: {earningsrun_date}", className="text-end"))
             ], justify="around"),
     dbc.Row([
