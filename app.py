@@ -76,8 +76,8 @@ server = app.server
 
 anzeigedf = df_t
 anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
-#f_date = anzeigedf["date"] > filterpastdate
-#anzeigedf = anzeigedf.loc[f_date]
+f_date = anzeigedf["date"] > pstd_str
+anzeigedf = anzeigedf.loc[f_date]
 
 cfilterlist = []
 for i in anzeigedf["name"].unique():
@@ -142,7 +142,7 @@ app.layout = dbc.Container([
     dbc.Row([]),
 
     dbc.Row([
-        dbc.Col(html.H3("©JLX JLX SFTWR 2024, StockDataDash v1.1", className="text-start"))
+        dbc.Col(html.H3("©JLX JLX SFTWR 2024, StockDataDash v1.1x_Working Copy", className="text-start"))
                 ]),
     
                             ], fluid=True)
