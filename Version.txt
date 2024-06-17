@@ -1,0 +1,37 @@
+****************************************
+
+********** JLX JLX SOFTWARE **********
+
+****************************************
+
+# Table of Contents:
+## Purpose of Dash
+## Version Log
+
+
+## Purpose of Dash
+
+### This is a Stock Data Dashboaord, with multiple Views/Tables of various Stock Market Data
+
+
+## Version Log
+
+## v1.1
+### Currently supported Stocks:
+### - S&P 500
+
+### Changes in Mechanism:
+### Tables are now being filtered for future Earnings Release Dates. No past Earnings are being displayed.
+
+### Changes in Design:
+### This Version shows two Tables: 
+### One is displaying a selected List of Stocks and can be modified (filterwise) for more Stocks,
+### One is displaying all stock Data (as before)
+
+
+## v1.0
+### This Version is the first Version that has been hosted on Render: https://stockdatadash.onrender.com/
+### Static Data is being read from the "data" Folder and being displayed
+### Currently supported Stocks:
+### - S&P 500
+
