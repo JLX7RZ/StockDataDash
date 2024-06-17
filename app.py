@@ -25,6 +25,8 @@ import pandas as pd
 # Variables to display at the Page:
 # -------------------------------
 
+version_str = "1.1x_WIP"
+
 # stockrun_date = When was the last time, the stock update app was run
 stockrun_date = datetime.strptime(pridf.iloc[0,0], "%Y-%m-%d")
 stockrun_date = datetime.date(stockrun_date)
@@ -142,7 +144,7 @@ app.layout = dbc.Container([
     dbc.Row([]),
 
     dbc.Row([
-        dbc.Col(html.H3("©JLX JLX SFTWR 2024, StockDataDash v1.1x_Working Copy", className="text-start"))
+        dbc.Col(html.H3(f"©JLX JLX SFTWR 2024, StockDataDash {version_str}", className="text-start"))
                 ]),
     
                             ], fluid=True)
