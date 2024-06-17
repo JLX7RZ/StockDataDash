@@ -76,8 +76,8 @@ server = app.server
 
 anzeigedf = df_t
 anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
-f_date = anzeigedf["date"] > filterpastdate
-anzeigedf = anzeigedf.loc[f_date]
+#f_date = anzeigedf["date"] > filterpastdate
+#anzeigedf = anzeigedf.loc[f_date]
 
 cfilterlist = []
 for i in anzeigedf["name"].unique():
