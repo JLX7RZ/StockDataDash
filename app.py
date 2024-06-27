@@ -41,7 +41,7 @@ tmstp = datetime.now()
 dtd = datetime.date(tmstp)
 dtd_str = str(tmstp)[:10]
 # Yesterdays Date
-pastdate = datetime.date(tmstp - timedelta(1))
+pastdate = datetime.date(tmstp - timedelta(2))
 filterpastdate = tmstp - timedelta(1)
 pstd_str = str(pastdate)[:10]
 
