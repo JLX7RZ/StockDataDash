@@ -78,6 +78,9 @@ server = app.server
 
 anzeigedf = df_t
 anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
+anzeigedf["marketCapitalization"] = anzeigedf["marketCapitalization"].round(4)
+
+
 f_date = anzeigedf["date"] > pstd_str
 anzeigedf = anzeigedf.loc[f_date]
 
