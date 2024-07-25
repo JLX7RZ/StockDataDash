@@ -54,7 +54,9 @@ pstd_str = str(pastdate)[:10]
 ## Gefiltert nach:
 
 df_t = pd.DataFrame()
+df_t["eventID"] = df_t["symbol"] +"-"+ df_t["date"]
 ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol", "eventID"]
+
 for i in ioi:
     df_t[i] = earningsdf[i] 
 
