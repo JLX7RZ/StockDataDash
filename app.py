@@ -6,6 +6,9 @@ from datetime import datetime, timedelta
 ## Earnings DataFrame
 earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
+earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
+
+
 #earningsdf["date"] = pd.to_datetime(earningsdf["date"])
 ## Program Run Info 
 pridf = pd.read_csv("./data/pri.csv")
@@ -54,7 +57,7 @@ pstd_str = str(pastdate)[:10]
 ## Gefiltert nach:
 
 df_t = pd.DataFrame()
-ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol"]#, "eventID"]
+ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol", "eventID"]
 
 for i in ioi:
     df_t[i] = earningsdf[i] 
@@ -78,7 +81,6 @@ server = app.server
 #datetime.strptime(date_string, "%d %B, %Y")
 
 anzeigedf = df_t
-df_t["eventID"] = df_t["symbol"] +"-"+ df_t["date"]
 anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
 anzeigedf["marketCapitalization"] = anzeigedf["marketCapitalization"].round(4)
 
