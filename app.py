@@ -81,8 +81,9 @@ server = app.server
 #datetime.strptime(date_string, "%d %B, %Y")
 
 anzeigedf = df_t
-anzeigedf = anzeigedf.sort_values(by=["epsEstimate"], ascending=False)
-anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
+anzeigedf = anzeigedf.sort_values(by=["date", "epsEstimate"], ascending=[True, False])
+#anzeigedf = anzeigedf.sort_values(by=["epsEstimate"], ascending=False)
+#anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
 anzeigedf["marketCapitalization"] = anzeigedf["marketCapitalization"].round(4)
 
 
