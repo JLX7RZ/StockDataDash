@@ -84,7 +84,9 @@ anzeigedf = df_t
 anzeigedf = anzeigedf.sort_values(by=["date", "epsEstimate"], ascending=[True, False])
 #anzeigedf = anzeigedf.sort_values(by=["epsEstimate"], ascending=False)
 #anzeigedf = anzeigedf.sort_values(by=["date"], ascending=True)
+
 anzeigedf["marketCapitalization"] = anzeigedf["marketCapitalization"].round(4)
+anzeigedf["epsEstimate"] = anzeigedf["epsEstimate"].round(4)
 
 
 f_date = anzeigedf["date"] > pstd_str
