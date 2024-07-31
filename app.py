@@ -4,14 +4,24 @@ from datetime import datetime, timedelta
 
 # Reading Dataframes of interest:
 ## Earnings DataFrame
-earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
+url_earningdf = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/earnings_display_set.csv"
+url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
+
+earningsdf = pd.read_csv(url_earningdf)
+
+
+#earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
+
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
 
 
 #earningsdf["date"] = pd.to_datetime(earningsdf["date"])
 ## Program Run Info 
-pridf = pd.read_csv("./data/pri.csv")
+
+pridf = pd.read_csv(url_pri)
+
+#pridf = pd.read_csv("./data/pri.csv")
 pridf = pridf.drop(columns="Unnamed: 0")
 
 # Imports for the Dashboard
