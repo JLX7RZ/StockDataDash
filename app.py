@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 # Reading Dataframes of interest:
 ## Earnings DataFrame
-url_earningdf = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/earnings_display_set.csv"
+url_earningdf = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/_displayearnings_cleanset.csv"
 url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
 
 earningsdf = pd.read_csv(url_earningdf)
