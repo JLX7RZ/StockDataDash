@@ -41,12 +41,11 @@ import pandas as pd
 version_str = "1.1x_WIP"
 
 # stockrun_date = When was the last time, the stock update app was run
-stockrun_date = datetime.strptime(pridf.iloc[0,0], "%Y-%m-%d")
-stockrun_date = datetime.date(stockrun_date)
+stockrun_date = pridf["stockrun_date"].values[0]
 
 # earningsrun_date = When was the last time, the earnings update app was run
 
-earningsrun_date = datetime.strptime(pridf.iloc[0,1], "%Y-%m-%d")
+earningsrun_date = datetime.strptime(pridf["earningsrun_date"].values[0], "%Y-%m-%d")
 earningsrun_date = datetime.date(earningsrun_date)
 
 # Todays Date
