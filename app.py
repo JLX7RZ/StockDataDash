@@ -25,6 +25,9 @@ earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_bi
 def format_eps(x):
     return f"{0:.3g}"
 
+earningsdf['epsActual'] = float(earningsdf['epsActual'])
+earningsdf['epsEstimate'] = float(earningsdf['epsEstimate'])
+
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
 earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
 
