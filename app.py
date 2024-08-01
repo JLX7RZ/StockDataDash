@@ -15,6 +15,13 @@ earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
 
+# FORMATTING:
+def format_as_billion(x):
+    return f"{x / 1e9:.2f} Mrd"
+
+earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billion)
+
+
 
 #earningsdf["date"] = pd.to_datetime(earningsdf["date"])
 ## Program Run Info 
