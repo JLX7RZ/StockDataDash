@@ -22,6 +22,11 @@ def format_as_billion(x):
 earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billion)
 earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
 
+def format_eps(x):
+    return f"{x:.3f}"
+
+earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
+earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps
 
 
 #earningsdf["date"] = pd.to_datetime(earningsdf["date"])
