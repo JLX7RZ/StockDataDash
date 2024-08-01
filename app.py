@@ -20,6 +20,7 @@ def format_as_billion(x):
     return f"{x / 1e9:.2f} Mrd"
 
 earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billion)
+earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
 
 
 
