@@ -23,7 +23,7 @@ earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billio
 earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
 
 def format_eps(x):
-    return f"{0:.3f}"
+    return f"{%:.3f}"
 
 
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
