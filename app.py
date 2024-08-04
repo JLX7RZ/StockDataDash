@@ -10,12 +10,16 @@ url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
 earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
+
+"""
 # FORMATTING "EPS"
 def format_eps(x):
     return f"{x:.3f}"
 
-earningsdf['epsActual'] = float(earningsdf['epsActual']).apply(format_eps)
-earningsdf['epsEstimate'] = float(earningsdf['epsEstimate']).apply(format_eps)
+earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
+earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
+
+"""
 
 # FORMATTING:
 def format_as_billion(x):
