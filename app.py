@@ -11,15 +11,13 @@ earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
 
-"""
+
 # FORMATTING "EPS"
 def format_eps(x):
     return f"{x:.3f}"
 
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
 earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
-
-"""
 
 # FORMATTING:
 def format_as_billion(x):
@@ -33,7 +31,6 @@ earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_bi
 #earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
 
 
-earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
 
 
 
@@ -88,7 +85,15 @@ pstd_str = str(pastdate)[:10]
 ## Gefiltert nach:
 
 df_t = pd.DataFrame()
-ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol", "eventID"]
+
+
+# Mit "eventID":
+#earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
+#ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol", "eventID"]
+
+
+# Ohne "eventID":
+ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol"]
 
 for i in ioi:
     df_t[i] = earningsdf[i] 
