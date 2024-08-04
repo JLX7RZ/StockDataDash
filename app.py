@@ -15,7 +15,7 @@ earningsdf["industry"] = earningsdf["finnhubIndustry"]
 
 # FORMATTING "EPS"
 def format_eps(x):
-    return f"{x / 1:.4f} $"
+    return f"{x / 1.0000:.3f} $"
 
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
 earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
