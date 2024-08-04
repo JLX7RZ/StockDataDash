@@ -10,6 +10,13 @@ url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
 earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
+# FORMATTING "EPS"
+def format_eps(x):
+    return f"{x:.3f}"
+
+earningsdf['epsActual'] = float(earningsdf['epsActual']).apply(format_eps)
+earningsdf['epsEstimate'] = float(earningsdf['epsEstimate']).apply(format_eps)
+
 # FORMATTING:
 def format_as_billion(x):
     return f"{x / 1e9:.4f} Mrd"
@@ -17,13 +24,7 @@ def format_as_billion(x):
 earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billion)
 earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
 
-# FIRMATTING "EPS"
-def format_eps(x):
-    return f"{x:.3f}"
 
-
-earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
-earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
 
 #earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
 
