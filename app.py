@@ -10,6 +10,7 @@ url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
 earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
+earningsdf["industry"] = earningsdf["finnhubIndustry"]
 
 
 # FORMATTING "EPS"
@@ -93,7 +94,7 @@ df_t = pd.DataFrame()
 
 
 # Ohne "eventID":
-ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol"]
+ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "finnhubIndustry", "symbol"]
 
 for i in ioi:
     df_t[i] = earningsdf[i] 
