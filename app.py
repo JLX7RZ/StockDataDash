@@ -8,12 +8,7 @@ url_earningdf = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/_dis
 url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
 
 earningsdf = pd.read_csv(url_earningdf)
-
-
-#earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
-
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
-earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
 
 # FORMATTING:
 def format_as_billion(x):
@@ -23,14 +18,20 @@ earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billio
 earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
 
 # FIRMATTING "EPS"
-'''
 def format_eps(x):
     return f"{x:.3f}"
 
 
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
 earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
-'''
+
+#earningsdf = pd.read_csv("./data/earnings/_displayearnings_cleanset.csv")
+
+
+earningsdf["eventID"] = earningsdf["symbol"] +"-"+ earningsdf["date"]
+
+
+
 
 #earningsdf["date"] = pd.to_datetime(earningsdf["date"])
 ## Program Run Info 
