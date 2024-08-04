@@ -14,7 +14,7 @@ earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
 # FORMATTING "EPS"
 def format_eps(x):
-    return f"{x:.3f}"
+    return f"{x:.2f} $"
 
 earningsdf['epsActual'] = earningsdf['epsActual'].apply(format_eps)
 earningsdf['epsEstimate'] = earningsdf['epsEstimate'].apply(format_eps)
