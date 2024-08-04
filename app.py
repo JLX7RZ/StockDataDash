@@ -94,7 +94,7 @@ df_t = pd.DataFrame()
 
 
 # Ohne "eventID":
-ioi = ["date", "name", "hour", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "finnhubIndustry", "symbol"]
+ioi = ["date", "name", "hour", "industry", "marketCapitalization", "revenueEstimate", "revenueActual", "epsEstimate", "epsActual", "symbol"]
 
 for i in ioi:
     df_t[i] = earningsdf[i] 
