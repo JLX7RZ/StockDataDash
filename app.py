@@ -248,8 +248,7 @@ app.layout = dbc.Container([
         dbc.Col(html.H1(f"Data last refreshed: {earningsrun_date}", className="text-end"))
             ], justify="around"),
     dbc.Row([
-        dbc.Col(html.Div(estchartgraph)),
-                html.Div(earnings_fdpdn)
+        dbc.Col(html.Div(estchartgraph))
             ]), 
     dbc.Row([
         dbc.Col(html.Div(earningstable)),
