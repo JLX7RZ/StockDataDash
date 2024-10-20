@@ -16,6 +16,9 @@
 
 ## Version Log
 
+
+
+
 ## v1.1
 ### Currently supported Stocks:
 ### - S&P 500
@@ -23,10 +26,8 @@
 ### Changes in Mechanism:
 ### Tables are now being filtered for future Earnings Release Dates. No past Earnings are being displayed.
 
-### Changes in Design:
-### This Version shows two Tables: 
-### One is displaying a selected List of Stocks and can be modified (filterwise) for more Stocks,
-### One is displaying all stock Data (as before)
+### Chamges in Design
+### Column "Revenue" and "EPS" (actual and estimated) are now both formatted.
 
 
 ## v1.0

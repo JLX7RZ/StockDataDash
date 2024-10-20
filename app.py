@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 from datetime import datetime, timedelta
 
-# Reading Dataframes of interest:
+# Reading Dataframes of interest and formatting for Purpose:
 ## Earnings DataFrame
 url_earningdf = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/_displayearnings_cleanset.csv"
 url_pri = "http://stockdatadash.s3-website.eu-central-1.amazonaws.com/pri.csv"
@@ -11,7 +11,7 @@ earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
 earningsdf["industry"] = earningsdf["finnhubIndustry"]
-
+epwdf = earningsdf
 
 # FORMATTING "EPS"
 def format_eps(x):
@@ -26,6 +26,27 @@ def format_as_billion(x):
 
 earningsdf['revenueActual'] = earningsdf['revenueActual'].apply(format_as_billion)
 earningsdf['revenueEstimate'] = earningsdf['revenueEstimate'].apply(format_as_billion)
+
+
+## Earnings per Week Graphs DF
+epwdf = epwdf.sort_values(by="date", ascending = True)
+epwdf["date"] = pd.to_datetime(epwdf['date'])
+epwdf['weekno'] = epwdf['date'].dt.isocalendar().week
+epwdf["earnings_year"] = epwdf['date'].dt.isocalendar().year
+epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + "-" + epwdf["weekno"].astype(str)
+ct_n_refdf = epwdf[['symbol', 'earnings_week']]
+ct_n_refdf = ct_n_refdf.groupby(["earnings_week"]).count()
+
+ct_n_refdf2 = epwdf[["earnings_week", "revenueEstimate"]]
+ct_n_refdf2 = ct_n_refdf2.groupby(["earnings_week"]).sum()
+ct_n_refdf = ct_n_refdf.merge(ct_n_refdf2, on = "earnings_week", how = "inner")
+ct_n_refdf.columns = ["count", "revEsum"]
+ct_n_refdf = ct_n_refdf.reset_index()
+
+
+
+
+
 
 
 
@@ -50,6 +71,7 @@ import dash
 from dash import dcc, html, dash_table, Input, Output, callback
 from dash.dependencies import Input, Output
 import plotly.express as px
+import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 
 import pandas as pd
@@ -117,6 +139,8 @@ server = app.server
 
 #datetime.strptime(date_string, "%d %B, %Y")
 
+
+## Earnins Table
 anzeigedf = df_t
 anzeigedf = anzeigedf.sort_values(by=["date", "epsEstimate"], ascending=[True, False])
 #anzeigedf = anzeigedf.sort_values(by=["epsEstimate"], ascending=False)
@@ -134,6 +158,8 @@ for i in anzeigedf["name"].unique():
     cfilterlist.append(i)
 
 
+
+
 earningstable = dash_table.DataTable(anzeigedf.to_dict('records'), id="earningstable",
                                     page_size=23,
                                     style_data={'color': 'white','backgroundColor': 'black'},
@@ -141,7 +167,70 @@ earningstable = dash_table.DataTable(anzeigedf.to_dict('records'), id="earningst
                                     'backgroundColor': 'rgb(110, 110, 110)',
                                     'color': 'white','fontWeight': 'bold'})
 
+
+## Earnings per Week Graph:
+
+
+
+import plotly.graph_objects as go
+
+# Beispiel-Daten
+x = ct_n_refdf['earnings_week']
+
+y_line = ct_n_refdf["revEsum"]  # Daten für den Line-Chart
+y_bar = ct_n_refdf["count"]   # Daten für den Bar-Chart
+
+# Erstellen der Figur
+estchart = go.Figure()
+
+# Hinzufügen des Bar-Charts
+estchart.add_trace(go.Bar(
+    x=x,
+    y=y_bar,
+    name='Count of Companies having Earnings Call that week',
+    opacity=0.6  
+))
+
+# Hinzufügen des Line-Charts
+estchart.add_trace(go.Scatter(
+    x=x,
+    y=y_line,
+    mode='lines',
+    yaxis="y2",
+    name='Revenue Sum that week'
+))
+
+# Layout-Optionen für die Überlagerung
+estchart.update_layout(
+    title="Comparison: Sum of Revenue and Sum Count of Earnings Calls",
+    xaxis_title="Calendar Week",
+    yaxis_title="Count of Companies having Earnings Call",
+    barmode='overlay',  # 'overlay' sorgt für Überlagerung
+    yaxis2=dict(
+        title="Sum Revenue of Earningscalls (estimated)",
+        overlaying='y',  # Überlagert die erste y-Achse
+        side='right'     # Positioniert die zweite y-Achse auf der rechten Seite
+    ),
+    
+    # Legendenposition und Darstellung
+    legend=dict(x=0.1, y=1.1)
+)
+
+
+estchart = estchart.update_layout(
+        plot_bgcolor="#222222", paper_bgcolor="#222222", font_color="white"
+    )
+
+
+estchartgraph = dcc.Graph(figure=estchart)
+
+
+
+
+## Earnings Dropdpwn
 earnings_fdpdn = dcc.Dropdown(cfilterlist, value=cfilterlist, multi=True, id='earnings_fdpdn')#, id='earnings_fdpdn', multi=True),
+
+
 
 
 
