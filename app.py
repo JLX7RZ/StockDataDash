@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime
 from datetime import datetime, timedelta
+import copy
 
 # Reading Dataframes of interest and formatting for Purpose:
 ## Earnings DataFrame
@@ -11,7 +12,7 @@ earningsdf = pd.read_csv(url_earningdf)
 earningsdf = earningsdf.drop(columns="Unnamed: 0")
 
 earningsdf["industry"] = earningsdf["finnhubIndustry"]
-epwdf = earningsdf
+epwdf = copy.deepcopy(earningsdf)
 
 # FORMATTING "EPS"
 def format_eps(x):
