@@ -34,7 +34,8 @@ epwdf = epwdf.sort_values(by="date", ascending = True)
 epwdf["date"] = pd.to_datetime(epwdf['date'])
 epwdf['weekno'] = epwdf['date'].dt.isocalendar().week
 epwdf["earnings_year"] = epwdf['date'].dt.isocalendar().year
-epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + "-" + epwdf["weekno"].astype(str)
+#epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + "-" + epwdf["weekno"].astype(str)
+epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + epwdf["weekno"].astype(str)
 ct_n_refdf = epwdf[['symbol', 'earnings_week']]
 ct_n_refdf = ct_n_refdf.groupby(["earnings_week"]).count()
 
@@ -283,7 +284,7 @@ app.layout = dbc.Container([
                 ], width={"size":6, "offset":0})
             ], justify="around"),
     dbc.Row([
-        dbc.Col(print(ct_n_refdf))
+        dbc.Col()
                 ]),
 
     dbc.Row([
@@ -301,12 +302,10 @@ app.layout = dbc.Container([
 def update_output(nameofstock):
     mask = anzeigedf["name"].isin(nameofstock)
     filtered_table = anzeigedf[mask].to_dict('records')
-    print(ct_n_refdf)
     return filtered_table
 
 # -------------------------------
 # Run the App
 # -------------------------------
-print(ct_n_refdf)
 if __name__ == "__main__":
     app.run_server(mode="inline", host="localhost")
