@@ -307,6 +307,6 @@ def update_output(nameofstock):
 # -------------------------------
 # Run the App
 # -------------------------------
-
+print(ct_n_refdf)
 if __name__ == "__main__":
     app.run_server(mode="inline", host="localhost")
