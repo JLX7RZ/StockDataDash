@@ -282,7 +282,7 @@ app.layout = dbc.Container([
             dcc.Graph(id="line-fig2", figure={})
                 ], width={"size":6, "offset":0})
             ], justify="around"),
-    dbc.Row([]),
+    dbc.Row([print(ct_n_refdf)]),
 
     dbc.Row([
         dbc.Col(html.H3(f"©JLX JLX SFTWR 2024, StockDataDash {version_str}", className="text-start"))
