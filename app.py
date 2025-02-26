@@ -301,6 +301,7 @@ app.layout = dbc.Container([
 def update_output(nameofstock):
     mask = anzeigedf["name"].isin(nameofstock)
     filtered_table = anzeigedf[mask].to_dict('records')
+    print(ct_n_refdf)
     return filtered_table
 
 # -------------------------------
