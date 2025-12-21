@@ -34,7 +34,8 @@ epwdf = epwdf.sort_values(by="date", ascending = True)
 epwdf["date"] = pd.to_datetime(epwdf['date'])
 epwdf['weekno'] = epwdf['date'].dt.isocalendar().week
 epwdf["earnings_year"] = epwdf['date'].dt.isocalendar().year
-epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + "-" + epwdf["weekno"].astype(str)
+#epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + "-" + epwdf["weekno"].astype(str)
+epwdf["earnings_week"] = epwdf["earnings_year"].astype(str) + epwdf["weekno"].astype(str)
 ct_n_refdf = epwdf[['symbol', 'earnings_week']]
 ct_n_refdf = ct_n_refdf.groupby(["earnings_week"]).count()
 
@@ -282,7 +283,9 @@ app.layout = dbc.Container([
             dcc.Graph(id="line-fig2", figure={})
                 ], width={"size":6, "offset":0})
             ], justify="around"),
-    dbc.Row([]),
+    dbc.Row([
+        dbc.Col()
+                ]),
 
     dbc.Row([
         dbc.Col(html.H3(f"©JLX JLX SFTWR 2024, StockDataDash {version_str}", className="text-start"))
@@ -304,6 +307,5 @@ def update_output(nameofstock):
 # -------------------------------
 # Run the App
 # -------------------------------
-
 if __name__ == "__main__":
     app.run_server(mode="inline", host="localhost")
